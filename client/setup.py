@@ -6,7 +6,7 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     install_requires=[
-        'requests==2.28.2',
+        'requests==2.31.0',
         'setuptools==67.5.1',
     ],
 )
