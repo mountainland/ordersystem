@@ -1,7 +1,8 @@
 import requests
 import json
 
-class Ordersystem():
+
+class Ordersystem:
     def __init__(self, base_url):
         # Define base URL for API
         self.base_url = base_url
@@ -15,7 +16,7 @@ class Ordersystem():
     def create_order_list_api(self, data):
         """Create a new order"""
         url = f"{self.base_url}/ordersystem/api"
-        headers = {'Content-Type': 'application/json'}
+        headers = {"Content-Type": "application/json"}
         response = requests.post(url, json=data, headers=headers)
         return response.json()
 
@@ -28,7 +29,7 @@ class Ordersystem():
     def update_order_detail_api(self, order_id, data):
         """Update a specific order by its id"""
         url = f"{self.base_url}/ordersystem/api/{order_id}/"
-        headers = {'Content-Type': 'application/json'}
+        headers = {"Content-Type": "application/json"}
         response = requests.put(url, data=json.dumps(data), headers=headers)
         return response.json()
 

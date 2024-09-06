@@ -21,13 +21,13 @@ class OrderListApiView(APIView):
 
     # 2. Create
     def post(self, request, *args, **kwargs):
-        '''
+        """
         Create the Order with given Order data
-        '''
+        """
         data = {
-            'order': request.data.get('order'),
-            'ready': request.data.get('ready'),
-            'puh': request.data.get('puh')
+            "order": request.data.get("order"),
+            "ready": request.data.get("ready"),
+            "puh": request.data.get("puh"),
         }
         serializer = OrderSerializer(data=data)
         if serializer.is_valid():
@@ -42,9 +42,9 @@ class OrderDetailApiView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, Order_id, user_id):
-        '''
+        """
         Helper method to get the object with given Order_id, and user_id
-        '''
+        """
         try:
             return Order.objects.get(id=Order_id, user=user_id)
         except Order.DoesNotExist:
@@ -52,14 +52,14 @@ class OrderDetailApiView(APIView):
 
     # 3. Retrieve
     def get(self, request, Order_id, *args, **kwargs):
-        '''
+        """
         Retrieves the Order with given Order_id
-        '''
+        """
         Order_instance = self.get_object(Order_id, request.user.id)
         if not Order_instance:
             return Response(
                 {"res": "Object with Order id does not exists"},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         serializer = OrderSerializer(Order_instance)
@@ -67,32 +67,27 @@ class OrderDetailApiView(APIView):
 
     # 4. Update
     def put(self, request, Order_id, *args, **kwargs):
-        '''
+        """
         Updates the Order item with given Order_id if exists
-        '''
+        """
         Order_instance = self.get_object(Order_id, request.user.id)
         if not Order_instance:
             return Response(
                 {"res": "Object with Order id does not exists"},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
-        if not 'order' in request.data:
-            data = {
-                'ready': request.data.get('ready')
-            }
+        if not "order" in request.data:
+            data = {"ready": request.data.get("ready")}
 
-        elif request.data.get('order') == "":
-            data = {
-                'ready': request.data.get('ready')
-            }
+        elif request.data.get("order") == "":
+            data = {"ready": request.data.get("ready")}
 
         else:
             data = {
-                'order': request.data.get('order'),
-                'ready': request.data.get('ready')
+                "order": request.data.get("order"),
+                "ready": request.data.get("ready"),
             }
-        serializer = OrderSerializer(
-            instance=Order_instance, data=data, partial=True)
+        serializer = OrderSerializer(instance=Order_instance, data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -100,17 +95,14 @@ class OrderDetailApiView(APIView):
 
     # 5. Delete
     def delete(self, request, Order_id, *args, **kwargs):
-        '''
+        """
         Deletes the Order item with given Order_id if exists
-        '''
+        """
         Order_instance = self.get_object(Order_id, request.user.id)
         if not Order_instance:
             return Response(
                 {"res": "Object with Order id does not exists"},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
         Order_instance.delete()
-        return Response(
-            {"res": "Object deleted!"},
-            status=status.HTTP_200_OK
-        )
+        return Response({"res": "Object deleted!"}, status=status.HTTP_200_OK)

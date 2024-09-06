@@ -6,13 +6,14 @@ api = Ordersystem("https://dev.backend.order.mountainland.fi")
 
 products = []
 
+
 def reload_screen():
     for widget in root.winfo_children():
         widget.destroy()
-        
+
     root.geometry("200x400")
 
-    puh = tk.Label(root, text='Customer ID')
+    puh = tk.Label(root, text="Customer ID")
     puh.pack()
 
     puh_entry = tk.Entry(root)
@@ -30,6 +31,7 @@ def reload_screen():
     button = tk.Button(root, text="Lähetä tilaus", command=show_entry_contents)
     button.pack()
 
+
 def show_entry_contents():
     order = {}
 
@@ -40,6 +42,7 @@ def show_entry_contents():
 
     api.create_order_list_api(request_data)
     reload_screen()
+
 
 root = tk.Tk()
 root.title("LuovaClubin Tilausjärjestelmä")
