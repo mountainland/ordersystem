@@ -41,17 +41,15 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "Account",
-    "api"
+    "api",
 ]
 
-API_GENERATOR = {
-    'accounts'  : "Account.models.Account"
-}
+API_GENERATOR = {"accounts": "Account.models.Account"}
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ],
 }
 

@@ -1,6 +1,7 @@
 import json
 
-class Product():
+
+class Product:
     def __init__(self, id=None, name=None, price=None, visiblity=True):
         self.id = id
         self.name = name
@@ -8,7 +9,14 @@ class Product():
         self.visiblity = visiblity
 
     def __json__(self):
-        return json.dumps({"id": self.id, "name": self.name, "price": self.price, "visiblity": self.visiblity})
+        return json.dumps(
+            {
+                "id": self.id,
+                "name": self.name,
+                "price": self.price,
+                "visiblity": self.visiblity,
+            }
+        )
 
     def update(self, response):
         self.name = response["name"]

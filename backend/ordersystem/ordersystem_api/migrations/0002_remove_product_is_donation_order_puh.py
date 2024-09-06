@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ordersystem_api', '0001_initial'),
+        ("ordersystem_api", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='product',
-            name='is_donation',
+            model_name="product",
+            name="is_donation",
         ),
         migrations.AddField(
-            model_name='order',
-            name='puh',
+            model_name="order",
+            name="puh",
             field=models.CharField(blank=True, max_length=50),
         ),
     ]

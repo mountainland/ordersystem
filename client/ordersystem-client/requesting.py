@@ -3,7 +3,8 @@ import json
 
 from models import Product
 
-class Ordersystem():
+
+class Ordersystem:
     def __init__(self, base_url):
         # Define base URL for API
         self.self.base_url = base_url
@@ -17,7 +18,7 @@ class Ordersystem():
     def create_order_list_api(self, data):
         """Create a new order"""
         url = f"{self.base_url}/ordersystem/api"
-        headers = {'Content-Type': 'application/json'}
+        headers = {"Content-Type": "application/json"}
         response = requests.post(url, data=json.dumps(data), headers=headers)
         return response.json()
 
@@ -30,7 +31,7 @@ class Ordersystem():
     def update_order_detail_api(self, order_id, data):
         """Update a specific order by its id"""
         url = f"{self.base_url}/ordersystem/api/{order_id}/"
-        headers = {'Content-Type': 'application/json'}
+        headers = {"Content-Type": "application/json"}
         response = requests.put(url, data=json.dumps(data), headers=headers)
         return response.json()
 
@@ -49,7 +50,7 @@ class Ordersystem():
     def create_product_list_api(self, data):
         """Create a new product"""
         url = f"{self.base_url}/ordersystem/api/products/"
-        headers = {'Content-Type': 'application/json'}
+        headers = {"Content-Type": "application/json"}
         response = requests.post(url, data=json.dumps(data), headers=headers)
         return Product.update((response.json()))
 
@@ -62,6 +63,6 @@ class Ordersystem():
     def update_product_detail_api(self, product: Product):
         """Update a specific product by its id"""
         url = f"{self.base_url}/ordersystem/api/product/{product.id}"
-        headers = {'Content-Type': 'application/json'}
+        headers = {"Content-Type": "application/json"}
         response = requests.put(url, data=json(product), headers=headers)
         return response.json()
